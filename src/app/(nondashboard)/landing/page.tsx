@@ -45,22 +45,22 @@ const LoadingSkeleton = () => {
 };
 
 const Landing = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const currentImage = useCarousel({ totalImages: 3 });
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
   console.log( "courses:", courses)
 
-  // const handleCourseClick = (courseId: string) => {
-  //   router.push(`/search?id=${courseId}`, {
-  //     scroll: false,
-  //   });
-  // };
+  const handleCourseClick = (courseId: string) => {
+    router.push(`/search?id=${courseId}`, {
+      scroll: false,
+    });
+  };
 
   if (isLoading) return <LoadingSkeleton />;
 
-  function handleCourseClick(courseId: string): void {
-    throw new Error("Function not implemented.");
-  }
+  // function handleCourseClick(courseId: string): void {
+  //   throw new Error("Function not implemented.");
+  // }
 
   return (
     <motion.div
