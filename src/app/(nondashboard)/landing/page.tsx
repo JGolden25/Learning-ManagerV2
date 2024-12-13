@@ -58,9 +58,6 @@ const Landing = () => {
 
   if (isLoading) return <LoadingSkeleton />;
 
-  // function handleCourseClick(courseId: string): void {
-  //   throw new Error("Function not implemented.");
-  // }
 
   return (
     <motion.div
