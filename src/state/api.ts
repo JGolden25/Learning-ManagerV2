@@ -42,9 +42,15 @@ const customBaseQuery = async (
     if (successMessage) toast.success(successMessage);
   }
 
-    if (result.data) {
-      result.data = result.data.data;
-    } 
+  if (result.data) {
+    result.data = result.data.data;
+  } else if (
+    result.error?.status === 204 ||
+    result.meta?.response?.status === 24
+  ) {
+    return { data: null };
+  } 
+
     return result;
   } catch (error: unknown) {
     const errorMessage =
