@@ -1,5 +1,5 @@
 import React from "react";
-// import StripeProvider from "./StripeProvider";
+import StripeProvider from "./StripeProvider";
 import {
   PaymentElement,
   useElements,
@@ -11,13 +11,13 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import CoursePreview from "@/components/CoursePreview";
 import { CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { useCreateTransactionMutation } from "@/state/api";
+import { useCreateTransactionMutation } from "@/state/api";
 import { toast } from "sonner";
 
 const PaymentPageContent = () => {
   const stripe = useStripe();
   const elements = useElements();
-//   const [createTransaction] = useCreateTransactionMutation();
+  const [createTransaction] = useCreateTransactionMutation();
   const { navigateToStep } = useCheckoutNavigation();
   const { course, courseId } = useCurrentCourse();
   const { user } = useUser();
@@ -54,7 +54,7 @@ const PaymentPageContent = () => {
         amount: course?.price || 0,
       };
 
-    //   await createTransaction(transactionData), navigateToStep(3);
+      await createTransaction(transactionData), navigateToStep(3);
     }
   };
 
@@ -129,9 +129,9 @@ const PaymentPageContent = () => {
 };
 
 const PaymentPage = () => (
-//   <StripeProvider>
+  <StripeProvider>
     <PaymentPageContent />
-  {/* </StripeProvider> */}
+  </StripeProvider>
 );
 
 export default PaymentPage;
